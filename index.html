@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EN. 週次ダッシュボード</title>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  background: #f9f8f6;
+  color: #1a2a3a;
+  min-height: 100vh;
+}
+.header {
+  background: #1a2a3a;
+  color: #fff;
+  padding: 24px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header h1 { font-size: 20px; font-weight: 700; letter-spacing: 1px; }
+.header .update-date { font-size: 13px; color: #8a9baa; }
+.container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+
+/* KPI Cards */
+.kpi-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.kpi-card {
+  background: #fff;
+  border: 1px solid #e0ddd7;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+}
+.kpi-card.accent { border-left: 4px solid #8a7560; }
+.kpi-label { font-size: 13px; color: #5a6a78; margin-bottom: 8px; }
+.kpi-value { font-size: 42px; font-weight: 900; color: #1a2a3a; line-height: 1.1; }
+.kpi-sub { font-size: 13px; margin-top: 8px; }
+.kpi-sub.up { color: #3a5a48; }
+.kpi-sub.down { color: #8a3030; }
+.kpi-sub-detail { font-size: 12px; color: #8a9baa; margin-top: 4px; }
+
+/* Section */
+.section { margin-bottom: 24px; }
+.section-title { font-size: 16px; font-weight: 700; color: #1a2a3a; margin-bottom: 12px; padding-left: 12px; border-left: 3px solid #8a7560; }
+
+/* Charts row */
+.chart-row { display: grid; grid-template-columns: 2fr 1fr; gap: 16px; margin-bottom: 24px; }
+.chart-card {
+  background: #fff;
+  border: 1px solid #e0ddd7;
+  border-radius: 16px;
+  padding: 20px;
+}
+.chart-card h3 { font-size: 14px; font-weight: 700; color: #2d4358; margin-bottom: 12px; }
+
+/* Tables */
+.table-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.table-card {
+  background: #fff;
+  border: 1px solid #e0ddd7;
+  border-radius: 16px;
+  padding: 20px;
+  overflow-x: auto;
+}
+.table-card h3 { font-size: 14px; font-weight: 700; color: #2d4358; margin-bottom: 12px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+thead th {
+  background: #1a2a3a;
+  color: #fff;
+  padding: 8px 12px;
+  text-align: center;
+  font-weight: 500;
+}
+thead th:first-child { border-radius: 8px 0 0 0; }
+thead th:last-child { border-radius: 0 8px 0 0; }
+tbody td {
+  padding: 8px 12px;
+  text-align: center;
+  border-bottom: 1px solid #e0ddd7;
+}
+tbody tr:hover { background: #f9f8f6; }
+tbody tr.highlight { background: #f6f4f0; font-weight: 700; }
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 500;
+}
+.badge.up { background: #f2f5f3; color: #3a5a48; }
+.badge.down { background: #f7f2f0; color: #8a3030; }
+.badge.neutral { background: #f5f5f5; color: #5a6a78; }
+
+/* Donut legend */
+.donut-container { display: flex; align-items: center; gap: 16px; }
+.donut-canvas { flex-shrink: 0; }
+.donut-legend { font-size: 12px; }
+.donut-legend li { list-style: none; margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+.donut-legend .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+
+/* Weekly detail table */
+.weekly-table { width: 100%; }
+.weekly-table table { font-size: 12px; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .kpi-row, .chart-row, .table-row { grid-template-columns: 1fr; }
+  .kpi-value { font-size: 32px; }
+  .container { padding: 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>EN. by TERASS — 週次ダッシュボード</h1>
+  <span class="update-date">最終更新: 2026年03月24日</span>
+</div>
+
+<div class="container">
+
+<!-- KPI Cards -->
+<div class="kpi-row">
+  <div class="kpi-card accent">
+    <div class="kpi-label">資料請求（直近週 〜03/24）</div>
+    <div class="kpi-value">9</div>
+    <div class="kpi-sub down">前週比 -5件（-36%）</div>
+    <div class="kpi-sub-detail">21/21週</div>
+  </div>
+  <div class="kpi-card accent">
+    <div class="kpi-label">面談予約（直近週 〜03/24）</div>
+    <div class="kpi-value">9</div>
+    <div class="kpi-sub up">前週比 +2件（+29%）</div>
+    <div class="kpi-sub-detail">19/21週</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">累計</div>
+    <div class="kpi-value" style="font-size:36px;">177 / 114</div>
+    <div class="kpi-sub-detail">資料請求 177件 ／ 面談予約 114件</div>
+  </div>
+</div>
+
+<!-- Charts -->
+<div class="chart-row">
+  <div class="chart-card">
+    <h3>週次推移</h3>
+    <canvas id="weeklyChart" height="100"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>流入経路（直近週 資料請求）</h3>
+    <div class="donut-container">
+      <canvas id="channelChart" class="donut-canvas" width="160" height="160"></canvas>
+      <ul class="donut-legend" id="channelLegend"></ul>
+    </div>
+  </div>
+</div>
+
+<!-- Channel tables -->
+<div class="table-row">
+  <div class="table-card">
+    <h3>経路別 — 資料請求（直近週）</h3>
+    <table>
+      <thead><tr><th>経路</th><th>件数</th><th>構成比</th></tr></thead>
+      <tbody>
+        <tr><td>WEB検索</td><td>8</td><td>89%</td></tr>
+        <tr><td>TERASS社員・エージェント紹介</td><td>1</td><td>11%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-card">
+    <h3>経路別 — 面談予約（直近週）</h3>
+    <table>
+      <thead><tr><th>経路</th><th>件数</th><th>構成比</th></tr></thead>
+      <tbody>
+        <tr><td>WEB検索</td><td>5</td><td>56%</td></tr>
+        <tr><td>その他</td><td>4</td><td>44%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Weekly detail table -->
+<div class="section">
+  <div class="section-title">週次推移（詳細）</div>
+  <div class="table-card weekly-table">
+    <table>
+      <thead>
+        <tr><th>週</th><th>資料請求</th><th>前週比</th><th>面談予約</th><th>前週比</th></tr>
+      </thead>
+      <tbody id="weeklyTableBody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Attribute analysis -->
+<div class="table-row">
+  <div class="table-card">
+    <h3>流入経路（累計・資料請求）</h3>
+    <table>
+      <thead><tr><th>経路</th><th>件数</th><th>割合</th></tr></thead>
+      <tbody>
+        <tr><td>SNS</td><td>36</td><td>30%</td></tr>
+        <tr><td>WEB検索</td><td>34</td><td>28%</td></tr>
+        <tr><td>プレスリリース・WEB記事</td><td>21</td><td>17%</td></tr>
+        <tr><td>ECHOES/エコーズ</td><td>12</td><td>10%</td></tr>
+        <tr><td>知人・友人から</td><td>9</td><td>7%</td></tr>
+        <tr><td>その他</td><td>5</td><td>4%</td></tr>
+        <tr><td>TERASS社員・エージェント紹介</td><td>4</td><td>3%</td></tr>
+        <tr><td>TERASSからのメール・DM</td><td>1</td><td>1%</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="table-card">
+    <h3>年齢（累計・資料請求）</h3>
+    <table>
+      <thead><tr><th>年齢</th><th>件数</th><th>割合</th></tr></thead>
+      <tbody>
+        <tr><td>40〜44歳</td><td>26</td><td>21%</td></tr>
+        <tr><td>45〜49歳</td><td>23</td><td>19%</td></tr>
+        <tr><td>30〜34歳</td><td>21</td><td>17%</td></tr>
+        <tr><td>35〜39歳</td><td>16</td><td>13%</td></tr>
+        <tr><td>50〜54歳</td><td>14</td><td>11%</td></tr>
+        <tr><td>25〜29歳</td><td>9</td><td>7%</td></tr>
+        <tr><td>55〜59歳</td><td>5</td><td>4%</td></tr>
+        <tr><td>60〜64歳</td><td>5</td><td>4%</td></tr>
+        <tr><td>70歳以上</td><td>3</td><td>2%</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div>
+
+<script>
+// Weekly data (chronological)
+const weeklyData = [
+  {week:'10/14', s:9, m:0},
+  {week:'11/04', s:2, m:0},
+  {week:'11/18', s:1, m:1},
+  {week:'11/25', s:3, m:0},
+  {week:'12/02', s:1, m:0},
+  {week:'12/09', s:2, m:5},
+  {week:'12/16', s:11, m:11},
+  {week:'12/23', s:23, m:18},
+  {week:'12/30', s:3, m:2},
+  {week:'01/06', s:6, m:3},
+  {week:'01/13', s:4, m:1},
+  {week:'01/20', s:3, m:2},
+  {week:'01/27', s:11, m:5},
+  {week:'02/03', s:5, m:1},
+  {week:'02/10', s:17, m:6},
+  {week:'02/17', s:17, m:11},
+  {week:'02/24', s:8, m:12},
+  {week:'03/03', s:18, m:16},
+  {week:'03/10', s:10, m:4},
+  {week:'03/17', s:14, m:7},
+  {week:'03/24', s:9, m:9},
+];
+
+// Weekly Bar Chart
+const ctxWeekly = document.getElementById('weeklyChart').getContext('2d');
+new Chart(ctxWeekly, {
+  type: 'bar',
+  data: {
+    labels: weeklyData.map(d => d.week),
+    datasets: [
+      {
+        label: '資料請求',
+        data: weeklyData.map(d => d.s),
+        backgroundColor: '#1a2a3a',
+        borderRadius: 4,
+        barPercentage: 0.7,
+      },
+      {
+        label: '面談予約',
+        data: weeklyData.map(d => d.m),
+        backgroundColor: '#8a7560',
+        borderRadius: 4,
+        barPercentage: 0.7,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top', labels: { font: { family: 'Zen Kaku Gothic New', size: 12 }, usePointStyle: true, pointStyle: 'rectRounded' } },
+    },
+    scales: {
+      x: { grid: { display: false }, ticks: { font: { family: 'Zen Kaku Gothic New', size: 10 } } },
+      y: { grid: { color: '#e0ddd7' }, ticks: { font: { family: 'Zen Kaku Gothic New', size: 11 } } }
+    }
+  }
+});
+
+// Channel Donut
+const channelData = [
+  { label: 'WEB検索', value: 8, color: '#1a2a3a' },
+  { label: 'TERASS紹介', value: 1, color: '#8a7560' },
+];
+const ctxChannel = document.getElementById('channelChart').getContext('2d');
+new Chart(ctxChannel, {
+  type: 'doughnut',
+  data: {
+    labels: channelData.map(d => d.label),
+    datasets: [{
+      data: channelData.map(d => d.value),
+      backgroundColor: channelData.map(d => d.color),
+      borderWidth: 0,
+    }]
+  },
+  options: {
+    responsive: false,
+    cutout: '55%',
+    plugins: { legend: { display: false } }
+  }
+});
+const legendEl = document.getElementById('channelLegend');
+channelData.forEach(d => {
+  const li = document.createElement('li');
+  li.innerHTML = '<span class="dot" style="background:'+d.color+'"></span> '+d.label+' ('+d.value+'件)';
+  legendEl.appendChild(li);
+});
+
+// Weekly detail table (newest first)
+const tbody = document.getElementById('weeklyTableBody');
+const reversed = [...weeklyData].reverse();
+reversed.forEach((d, i) => {
+  const prev = i < reversed.length - 1 ? reversed[i + 1] : null;
+  const sWow = prev && prev.s > 0 ? ((d.s - prev.s) / prev.s * 100) : null;
+  const mWow = prev && prev.m > 0 ? ((d.m - prev.m) / prev.m * 100) : null;
+
+  const sClass = sWow !== null ? (sWow >= 0 ? 'up' : 'down') : 'neutral';
+  const mClass = mWow !== null ? (mWow >= 0 ? 'up' : 'down') : 'neutral';
+  const sText = sWow !== null ? (sWow >= 0 ? '+' : '') + Math.round(sWow) + '%' : '—';
+  const mText = mWow !== null ? (mWow >= 0 ? '+' : '') + Math.round(mWow) + '%' : '—';
+
+  const tr = document.createElement('tr');
+  if (i === 0) tr.className = 'highlight';
+  tr.innerHTML = '<td>〜'+d.week+'</td><td>'+d.s+'</td><td><span class="badge '+sClass+'">'+sText+'</span></td><td>'+d.m+'</td><td><span class="badge '+mClass+'">'+mText+'</span></td>';
+  tbody.appendChild(tr);
+});
+</script>
+</body>
+</html>
