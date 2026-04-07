@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EN. é±æ¬¡ããã·ã¥ãã¼ã</title>
+<title>EN. 週次ダッシュボード</title>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
@@ -117,8 +117,8 @@ tbody tr.highlight { background: #f6f4f0; font-weight: 700; }
 <body>
 
 <div class="header">
-  <h1>EN. by TERASS â é±æ¬¡ããã·ã¥ãã¼ã</h1>
-  <span class="update-date">æçµæ´æ°: 2026å¹´04æ07æ¥</span>
+  <h1>EN. by TERASS — 週次ダッシュボード</h1>
+  <span class="update-date">最終更新: 2026年04月07日</span>
 </div>
 
 <div class="container">
@@ -126,32 +126,32 @@ tbody tr.highlight { background: #f6f4f0; font-weight: 700; }
 <!-- KPI Cards -->
 <div class="kpi-row">
   <div class="kpi-card accent">
-    <div class="kpi-label">è³æè«æ±ï¼ç´è¿é± ã04/07ï¼</div>
+    <div class="kpi-label">資料請求（直近週 〜04/07）</div>
     <div class="kpi-value">7</div>
-    <div class="kpi-sub down">åé±æ¯ -1ä»¶ï¼-13%ï¼</div>
-    <div class="kpi-sub-detail">23/23é±</div>
+    <div class="kpi-sub down">前週比 -1件（-13%）</div>
+    <div class="kpi-sub-detail">23/23週</div>
   </div>
   <div class="kpi-card accent">
-    <div class="kpi-label">é¢è«äºç´ï¼ç´è¿é± ã04/07ï¼</div>
+    <div class="kpi-label">面談予約（直近週 〜04/07）</div>
     <div class="kpi-value">2</div>
-    <div class="kpi-sub up">åé±æ¯ +1ä»¶ï¼+100%ï¼</div>
-    <div class="kpi-sub-detail">21/23é±</div>
+    <div class="kpi-sub up">前週比 +1件（+100%）</div>
+    <div class="kpi-sub-detail">21/23週</div>
   </div>
   <div class="kpi-card">
-    <div class="kpi-label">ç´¯è¨</div>
+    <div class="kpi-label">累計</div>
     <div class="kpi-value" style="font-size:36px;">194 / 118</div>
-    <div class="kpi-sub-detail">è³æè«æ± 194ä»¶ ï¼ é¢è«äºç´ 118ä»¶</div>
+    <div class="kpi-sub-detail">資料請求 194件 ／ 面談予約 118件</div>
   </div>
 </div>
 
 <!-- Charts -->
 <div class="chart-row">
   <div class="chart-card">
-    <h3>é±æ¬¡æ¨ç§»</h3>
+    <h3>週次推移</h3>
     <canvas id="weeklyChart" height="100"></canvas>
   </div>
   <div class="chart-card">
-    <h3>æµå¥çµè·¯ï¼ç´è¿é± è³æè«æ±ï¼</h3>
+    <h3>流入経路（直近週 資料請求）</h3>
     <div class="donut-container">
       <canvas id="channelChart" class="donut-canvas" width="160" height="160"></canvas>
       <ul class="donut-legend" id="channelLegend"></ul>
@@ -162,22 +162,22 @@ tbody tr.highlight { background: #f6f4f0; font-weight: 700; }
 <!-- Channel tables -->
 <div class="table-row">
   <div class="table-card">
-    <h3>çµè·¯å¥ â è³æè«æ±ï¼ç´è¿é±ï¼</h3>
+    <h3>経路別 — 資料請求（直近週）</h3>
     <table>
-      <thead><tr><th>çµè·¯</th><th>ä»¶æ°</th><th>æ§ææ¯</th></tr></thead>
+      <thead><tr><th>経路</th><th>件数</th><th>構成比</th></tr></thead>
       <tbody>
-        <tr><td>WEBæ¤ç´¢</td><td>6</td><td>86%</td></tr>
-        <tr><td>ç¥äººã»åäººãã</td><td>1</td><td>14%</td></tr>
+        <tr><td>WEB検索</td><td>6</td><td>86%</td></tr>
+        <tr><td>知人・友人から</td><td>1</td><td>14%</td></tr>
       </tbody>
     </table>
   </div>
   <div class="table-card">
-    <h3>çµè·¯å¥ â é¢è«äºç´ï¼ç´è¿é±ï¼</h3>
+    <h3>経路別 — 面談予約（直近週）</h3>
     <table>
-      <thead><tr><th>çµè·¯</th><th>ä»¶æ°</th><th>æ§ææ¯</th></tr></thead>
+      <thead><tr><th>経路</th><th>件数</th><th>構成比</th></tr></thead>
       <tbody>
-        <tr><td>WEBæ¤ç´¢</td><td>1</td><td>50%</td></tr>
-        <tr><td>ç¥äººã»åäººãã</td><td>1</td><td>50%</td></tr>
+        <tr><td>WEB検索</td><td>1</td><td>50%</td></tr>
+        <tr><td>知人・友人から</td><td>1</td><td>50%</td></tr>
       </tbody>
     </table>
   </div>
@@ -185,11 +185,11 @@ tbody tr.highlight { background: #f6f4f0; font-weight: 700; }
 
 <!-- Weekly detail table -->
 <div class="section">
-  <div class="section-title">é±æ¬¡æ¨ç§»ï¼è©³ç´°ï¼</div>
+  <div class="section-title">週次推移（詳細）</div>
   <div class="table-card weekly-table">
     <table>
       <thead>
-        <tr><th>é±</th><th>è³æè«æ±</th><th>åé±æ¯</th><th>é¢è«äºç´</th><th>åé±æ¯</th></tr>
+        <tr><th>週</th><th>資料請求</th><th>前週比</th><th>面談予約</th><th>前週比</th></tr>
       </thead>
       <tbody id="weeklyTableBody"></tbody>
     </table>
@@ -199,35 +199,35 @@ tbody tr.highlight { background: #f6f4f0; font-weight: 700; }
 <!-- Attribute analysis -->
 <div class="table-row">
   <div class="table-card">
-    <h3>æµå¥çµè·¯ï¼ç´¯è¨ã»è³æè«æ±ï¼</h3>
+    <h3>流入経路（累計・資料請求）</h3>
     <table>
-      <thead><tr><th>çµè·¯</th><th>ä»¶æ°</th><th>å²å</th></tr></thead>
+      <thead><tr><th>経路</th><th>件数</th><th>割合</th></tr></thead>
       <tbody>
-        <tr><td>WEBæ¤ç´¢</td><td>46</td><td>33%</td></tr>
+        <tr><td>WEB検索</td><td>46</td><td>33%</td></tr>
         <tr><td>SNS</td><td>37</td><td>27%</td></tr>
-        <tr><td>ãã¬ã¹ãªãªã¼ã¹ã»WEBè¨äº</td><td>24</td><td>17%</td></tr>
-        <tr><td>ECHOES/ã¨ã³ã¼ãº</td><td>12</td><td>9%</td></tr>
-        <tr><td>ç¥äººã»åäººãã</td><td>10</td><td>7%</td></tr>
-        <tr><td>ãã®ä»</td><td>5</td><td>4%</td></tr>
-        <tr><td>TERASSç¤¾å¡ã»ã¨ã¼ã¸ã§ã³ãç´¹ä»</td><td>4</td><td>3%</td></tr>
-        <tr><td>TERASSããã®ã¡ã¼ã«ã»DM</td><td>1</td><td>1%</td></tr>
+        <tr><td>プレスリリース・WEB記事</td><td>24</td><td>17%</td></tr>
+        <tr><td>ECHOES/エコーズ</td><td>12</td><td>9%</td></tr>
+        <tr><td>知人・友人から</td><td>10</td><td>7%</td></tr>
+        <tr><td>その他</td><td>5</td><td>4%</td></tr>
+        <tr><td>TERASS社員・エージェント紹介</td><td>4</td><td>3%</td></tr>
+        <tr><td>TERASSからのメール・DM</td><td>1</td><td>1%</td></tr>
       </tbody>
     </table>
   </div>
   <div class="table-card">
-    <h3>å¹´é½¢ï¼ç´¯è¨ã»è³æè«æ±ï¼</h3>
+    <h3>年齢（累計・資料請求）</h3>
     <table>
-      <thead><tr><th>å¹´é½¢</th><th>ä»¶æ°</th><th>å²å</th></tr></thead>
+      <thead><tr><th>年齢</th><th>件数</th><th>割合</th></tr></thead>
       <tbody>
-        <tr><td>40ã44æ­³</td><td>30</td><td>22%</td></tr>
-        <tr><td>45ã49æ­³</td><td>25</td><td>18%</td></tr>
-        <tr><td>30ã34æ­³</td><td>23</td><td>17%</td></tr>
-        <tr><td>35ã39æ­³</td><td>21</td><td>15%</td></tr>
-        <tr><td>50ã54æ­³</td><td>17</td><td>12%</td></tr>
-        <tr><td>25ã29æ­³</td><td>9</td><td>6%</td></tr>
-        <tr><td>55ã59æ­³</td><td>6</td><td>4%</td></tr>
-        <tr><td>60ã64æ­³</td><td>5</td><td>4%</td></tr>
-        <tr><td>70æ­³ä»¥ä¸</td><td>3</td><td>2%</td></tr>
+        <tr><td>40〜44歳</td><td>30</td><td>22%</td></tr>
+        <tr><td>45〜49歳</td><td>25</td><td>18%</td></tr>
+        <tr><td>30〜34歳</td><td>23</td><td>17%</td></tr>
+        <tr><td>35〜39歳</td><td>21</td><td>15%</td></tr>
+        <tr><td>50〜54歳</td><td>17</td><td>12%</td></tr>
+        <tr><td>25〜29歳</td><td>9</td><td>6%</td></tr>
+        <tr><td>55〜59歳</td><td>6</td><td>4%</td></tr>
+        <tr><td>60〜64歳</td><td>5</td><td>4%</td></tr>
+        <tr><td>70歳以上</td><td>3</td><td>2%</td></tr>
       </tbody>
     </table>
   </div>
@@ -271,14 +271,14 @@ new Chart(ctxWeekly, {
     labels: weeklyData.map(d => d.week),
     datasets: [
       {
-        label: 'è³æè«æ±',
+        label: '資料請求',
         data: weeklyData.map(d => d.s),
         backgroundColor: '#1a2a3a',
         borderRadius: 4,
         barPercentage: 0.7,
       },
       {
-        label: 'é¢è«äºç´',
+        label: '面談予約',
         data: weeklyData.map(d => d.m),
         backgroundColor: '#8a7560',
         borderRadius: 4,
@@ -300,8 +300,8 @@ new Chart(ctxWeekly, {
 
 // Channel Donut
 const channelData = [
-  { label: 'WEBæ¤ç´¢', value: 6, color: '#1a2a3a' },
-  { label: 'ç¥äººã»åäººãã', value: 1, color: '#8a7560' },
+  { label: 'WEB検索', value: 6, color: '#1a2a3a' },
+  { label: '知人・友人から', value: 1, color: '#8a7560' },
 ];
 const ctxChannel = document.getElementById('channelChart').getContext('2d');
 new Chart(ctxChannel, {
@@ -323,7 +323,7 @@ new Chart(ctxChannel, {
 const legendEl = document.getElementById('channelLegend');
 channelData.forEach(d => {
   const li = document.createElement('li');
-  li.innerHTML = '<span class="dot" style="background:'+d.color+'"></span> '+d.label+' ('+d.value+'ä»¶)';
+  li.innerHTML = '<span class="dot" style="background:'+d.color+'"></span> '+d.label+' ('+d.value+'件)';
   legendEl.appendChild(li);
 });
 
@@ -337,12 +337,12 @@ reversed.forEach((d, i) => {
 
   const sClass = sWow !== null ? (sWow >= 0 ? 'up' : 'down') : 'neutral';
   const mClass = mWow !== null ? (mWow >= 0 ? 'up' : 'down') : 'neutral';
-  const sText = sWow !== null ? (sWow >= 0 ? '+' : '') + Math.round(sWow) + '%' : 'â';
-  const mText = mWow !== null ? (mWow >= 0 ? '+' : '') + Math.round(mWow) + '%' : 'â';
+  const sText = sWow !== null ? (sWow >= 0 ? '+' : '') + Math.round(sWow) + '%' : '—';
+  const mText = mWow !== null ? (mWow >= 0 ? '+' : '') + Math.round(mWow) + '%' : '—';
 
   const tr = document.createElement('tr');
   if (i === 0) tr.className = 'highlight';
-  tr.innerHTML = '<td>ã'+d.week+'</td><td>'+d.s+'</td><td><span class="badge '+sClass+'">'+sText+'</span></td><td>'+d.m+'</td><td><span class="badge '+mClass+'">'+mText+'</span></td>';
+  tr.innerHTML = '<td>〜'+d.week+'</td><td>'+d.s+'</td><td><span class="badge '+sClass+'">'+sText+'</span></td><td>'+d.m+'</td><td><span class="badge '+mClass+'">'+mText+'</span></td>';
   tbody.appendChild(tr);
 });
 </script>
